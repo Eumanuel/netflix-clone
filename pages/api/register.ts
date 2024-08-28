@@ -36,9 +36,9 @@ export default async function handler(
       },
     });
 
-    const secureUser = (...user, pass)
+    const { pass, createdAt, updatedAt, emailVerified, ...secureUser } = user;
 
-    return res.status(200).json(user);
+    return res.status(200).json(secureUser);
   } catch (error) {
     console.log(error);
     return res.status(400).end();
