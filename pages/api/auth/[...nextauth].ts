@@ -1,16 +1,13 @@
-import NextAuth from "next-auth/next";
+import NextAuth, { AuthOptions } from "next-auth"; // Adicionando o tipo AuthOptions para exportar corretamente
 import Credentials from "next-auth/providers/credentials";
-
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-
 import prismadb from "@/lib/prismadb";
-
 import { compare } from "bcrypt";
 
-export default NextAuth({
+// Definindo o objeto authOptions para exportação
+export const authOptions: AuthOptions = {
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID || "",
@@ -73,4 +70,7 @@ export default NextAuth({
     secret: process.env.NEXTAUTH_JWT_SECRET,
   },
   secret: process.env.NEXTAUTH_SECRET,
-});
+};
+
+// Exporta o NextAuth com o authOptions
+export default NextAuth(authOptions);
