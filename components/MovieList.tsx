@@ -2,9 +2,10 @@ import React from "react";
 
 import { isEmpty } from "lodash";
 import MovieCard from "./MovieCard";
+import { Movie } from "@prisma/client";
 
 interface MovieListProps {
-  data: Record<string, any>[];
+  data: Movie[];
   title: string;
 }
 
