@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
+import { useRouter } from "next/router";
 
 import { BsFillPlayFill } from "react-icons/bs";
 import FavoriteButton from "./FavoriteButton";
@@ -11,14 +12,15 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
+  const router = useRouter();
   return (
     <div className="group bg-zinc-900 col-span relative h-[12vw]">
       <img
-        className="cursor-pointer object-cover transition duration shadow-xl rounded-md group-hover:opacity-90 sm:group-hover:opacity-0 delay-300 w-full h-[12vw]"
+        className="cursor-pointer object-cover transition duration shadow-xl rounded-md group-hover:opacity-100 sm:group-hover:opacity-0 delay-100 w-full h-[12vw]"
         src={data.thumbnailUrl}
         alt="Thumbnail"
       />
-      <div className="opacity-0 absolute top-0 transition duration-200 z-10 invisible sm:visible delay-300 w-full scale-0 group-hover:scale-110 group-hover:-translate-y-[6vw] group-hover:translate-x-[2vw] group-hover:opacity-100">
+      <div className="opacity-0 absolute top-0 transition duration-200 z-10 invisible sm:visible delay-100 w-full scale-0 group-hover:scale-110 group-hover:-translate-y-[6vw] group-hover:translate-x-[2vw] group-hover:opacity-100">
         <img
           className="cursor-pointer object-cover transition duration shadow-xl rounded-t-md w-full h-[12vw]"
           src={data.thumbnailUrl}
@@ -41,7 +43,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
             transition
             hover:bg-neutral-300
             "
-              onClick={() => {}}
+              onClick={() => router.push(`/watch/${data?.id}`)}
             >
               <BsFillPlayFill size={30} />
             </div>
