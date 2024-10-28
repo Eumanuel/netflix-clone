@@ -1,9 +1,10 @@
 import useSWR from "swr";
 import fetcher from "@/lib/fetcher";
+import { Movie } from "@prisma/client";
 
 const useMovie = (id?: string) => {
-  const { data, error, isLoading } = useSWR(
-    id ? `/api/movie/${id}` : null,
+  const { data, error, isLoading } = useSWR<Movie>(
+    id ? `/api/movies/${id}` : null,
     fetcher,
     {
       revalidateIfStale: false,
